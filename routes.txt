@@ -1,0 +1,97 @@
+import { Router,request,response} from "express";
+import Participant from "../../model/Participant.js";
+import Event from "../../model/Event.js";
+import Registration from "../../model/Registration.js";
+const router = Router();
+router.post("/basic2",async (req, res) => {
+    try{
+     const participant = Participant(req.body);
+     await participant.save()
+     res.send("request send successfully");
+    }
+    catch(error){
+        console.log(error);
+        res.send(error);
+    }
+  });  
+   router.get("/success",async(req,res) => {
+    try{
+       const Parti = await Participant.find();
+       res.send(Parti);
+    }
+    catch{
+      console.log(error);
+      res.send(error);
+    }
+  }); 
+   //model2//
+  
+  router.post("/basic3",async (req, res) => {
+    try{
+     const event = Event(req.body);
+     await event.save()
+     res.send("request send successfully");
+    }
+    catch(error){
+        console.log(error);
+        res.send(error);
+    }
+  });  
+   router.get("/success2",async(req,res) => {
+    try{
+       const event2 = await Event.find();
+       res.send(event2);
+    }
+    catch{
+      console.log(error);
+      res.send(error);
+    }
+}); 
+//model3//
+router.post("/basic4",async (req, res) => {
+    try{
+     const registration = Registration(req.body);
+     await registration.save()
+     res.send("request send successfully");
+    }
+    catch(error){
+        console.log(error);
+        res.send(error);
+    }
+  });  
+   router.get("/success3",async(req,res) => {
+    try{
+       const regis = await Registration.find();
+       res.send(regis);
+    }
+    catch{
+      console.log(error);
+      res.send(error);
+    }
+});
+    router.put("/put/:id", async (req , res) => {
+        try {
+          const regis = await Registration.findByIdAndUpdate(
+            req.params.id, req.body, 
+              { new: true, runValidators: true });
+          if (!regis)
+            {return res.send( 'regis not found' )};
+          res.send(regis)
+           
+        } catch (error) {
+            res.send(error);
+        }
+      });
+      router.delete('/del/:id', async (req, res) => {
+        try {
+          const regis = await Registration.findByIdAndDelete(req.params.id);
+          if (!regis){ return res.send( 'regis not found')};
+          res.send(regis)
+          
+        } catch (error) {
+             res.send(error)
+        }
+  }); 
+
+  
+  export default router;

@@ -1,0 +1,2 @@
+MONGO_URI="mongodb+srv://abhinaya:abinayanc@cluster0.q8fpy.mongodb.net/sports"
+PORT=5000

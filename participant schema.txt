@@ -1,0 +1,21 @@
+import mongoose from "mongoose";
+const project1schema = new mongoose.Schema({
+    name:{
+        type:String,
+        require:true
+    },
+    age:{
+        type:Number,
+        require:true
+    },
+    sport:{
+        type:String,
+        require:true
+    },
+    email:{
+        type:String,
+        require:true
+    }
+});
+const Participant = mongoose.model("Participant",project1schema);
+export default Participant;

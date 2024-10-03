@@ -1,0 +1,22 @@
+import mongoose from "mongoose";
+const projects2schema = new mongoose.Schema({
+    participantName:{
+        type:String,
+        require:true
+    },
+    eventName:{
+        type:String,
+        require:true
+    },
+    registrationDate:{
+        type:String,
+        require:true
+    },
+    status:{
+        type:String,
+        enum:["pending","confirmed","canceled"],
+        require:true
+    }
+});
+const Registration = mongoose.model("Registration",projects2schema);
+export default Registration;
